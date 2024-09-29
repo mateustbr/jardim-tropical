@@ -8,8 +8,8 @@ if(bar) {
     })
 }
 
-if (fechar) {
-    fechar.addEventListener('click', () => {
+if (close) {
+    close.addEventListener('click', () => {
         nav.classList.remove('active')
     })
 }

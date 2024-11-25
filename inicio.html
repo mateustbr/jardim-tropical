@@ -21,7 +21,7 @@
 
 <body>
     <header id="topo-menu">
-        <a href="#"><img src="images/navbar/Logo_Horizontal_Branca.png" class="logo_horizontal_topo"
+        <a href="inicio.html"><img src="images/navbar/Logo_Horizontal_Branca.png" class="logo_horizontal_topo"
                 alt="Logo_Horizontal_topo"></a>
         <div class="search">
             <input type="search" id="searchInput" placeholder="Pesquisar">
@@ -45,7 +45,17 @@
             <i id="barra" class="bi bi-list"></i>
         </div>
     </header><!--topo-menu-->
-
+    <div class="chat-container hidden" id="chatContainer">
+        <div class="chat-header">
+          <h2>Chatbot</h2>
+          <button id="closeChat" class="close-chat">✖</button>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+          <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+          <button id="sendButton">Enviar</button>
+        </div>
+      </div>
     <section id="destaque">
         <h4>Frescor, cor e harmonia.</h4>
         <h2>Flores Tropicais para um</h2>
@@ -238,7 +248,8 @@
     <section id="novidades" class="section-p1 section-m1">
         <div class="txt-novidade">
             <h4>Inscreva-se para receber novidades</h4>
-            <p>Receba nossas atualizações por e-mail sobre nossas últimas novidades e <span>ofertas especiais</span></p>
+            <p>Receba nossas atualizações por e-mail sobre nossas últimas novidades e <span>ofertas especiais</span>
+            </p>
         </div>
         <div class="form">
             <input type="text" placeholder="Seu E-mail">

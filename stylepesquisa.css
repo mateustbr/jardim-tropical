@@ -1,50 +1,45 @@
-*{
-    margin:0;
+/* Reset e configurações globais */
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
 }
-body{
+
+body {
     background-color: #f7f7f7;
 }
-.search{
+
+/* Campo de pesquisa */
+.search {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
-    background-color: #00000006;
+    background-color: #f0f0f0;
     width: 400px;
     margin: 20px auto;
     border-radius: 20px;
     padding: 5px 10px;
     color: #4b4b4b;
+    position: relative; /* Necessário para o posicionamento das sugestões */
 }
-#searchInput{
+
+#searchInput {
     padding: 8px;
     border: none;
     background-color: transparent;
     width: 100%;
     outline: none;
+    font-size: 16px;
+    color: #333;
 }
-.search label{
+
+.search label {
     height: 20px;
 }
-.card-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.card{
-    width: 300px;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px 20px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-.search .icon{
-    right: 0px;
-    top: 0px;
+
+/* Ícone da barra de pesquisa */
+.search .icon {
     height: 30px;
     width: 20px;
     text-align: center;
@@ -55,25 +50,116 @@ body{
     outline: none;
 }
 
+/* Lista de sugestões */
 #suggestions-list {
     list-style: none;
     margin: 0;
     padding: 0;
     position: absolute;
-    top: 100%; /* Posiciona abaixo do input */
+    top: calc(100% + 5px); /* Posiciona abaixo do input */
+    left: 0;
     width: 100%;
     background-color: #fff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     display: none; /* Inicialmente escondido */
-    max-height: 200px;
+    max-height: 250px;
     overflow-y: auto;
+    border-radius: 8px;
+    z-index: 1000;
 }
 
 #suggestions-list li {
+    display: flex;
+    align-items: center;
     padding: 10px;
     cursor: pointer;
+    transition: background-color 0.3s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#suggestions-list li:last-child {
+    border-bottom: none; /* Remove a borda do último item */
 }
 
 #suggestions-list li:hover {
-    background-color: #f0f0f0;
+    background-color: #f9f9f9;
+}
+
+/* Imagem nas sugestões */
+#suggestions-list li img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#suggestions-list li span {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Contêiner de cartões (produtos) */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.card .des h6 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.card .des h4 {
+    font-size: 20px;
+    color: #27ae60;
+}
+
+/* Melhorando a responsividade */
+@media (max-width: 600px) {
+    .search {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    #suggestions-list li img {
+        width: 30px;
+        height: 30px;
+    }
+
+    #suggestions-list li span {
+        font-size: 12px;
+    }
+    
 }

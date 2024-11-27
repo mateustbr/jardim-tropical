@@ -1,4 +1,3 @@
-/* Reset e configurações globais */
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +9,6 @@ body {
     background-color: #f7f7f7;
 }
 
-/* Campo de pesquisa */
 .search {
     display: flex;
     align-items: center;
@@ -22,7 +20,6 @@ body {
     padding: 5px 10px;
     color: #4b4b4b;
     position: relative;
-    /* Necessário para o posicionamento das sugestões */
 }
 
 #searchInput {
@@ -39,7 +36,6 @@ body {
     height: 20px;
 }
 
-/* Ícone da barra de pesquisa */
 .search .icon {
     height: 30px;
     width: 20px;
@@ -51,20 +47,17 @@ body {
     outline: none;
 }
 
-/* Lista de sugestões */
 #suggestions-list {
     list-style: none;
     margin: 0;
     padding: 0;
     position: absolute;
     top: calc(100% + 5px);
-    /* Posiciona abaixo do input */
     left: 0;
     width: 100%;
     background-color: #fff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     display: none;
-    /* Inicialmente escondido */
     max-height: 250px;
     overflow-y: auto;
     border-radius: 8px;
@@ -82,14 +75,12 @@ body {
 
 #suggestions-list li:last-child {
     border-bottom: none;
-    /* Remove a borda do último item */
 }
 
 #suggestions-list li:hover {
     background-color: #f9f9f9;
 }
 
-/* Imagem nas sugestões */
 #suggestions-list li img {
     width: 40px;
     height: 40px;
@@ -106,7 +97,6 @@ body {
     text-overflow: ellipsis;
 }
 
-/* Contêiner de cartões (produtos) */
 .card-container {
     display: flex;
     flex-wrap: wrap;

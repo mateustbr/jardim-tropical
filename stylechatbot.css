@@ -1,4 +1,4 @@
-* {
+font{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -36,14 +36,14 @@ body {
 }
 
 .show-chatbot .chatbot-toggler {
-  transform: rotate(-45deg);
+  transform: rotate(90deg);
 }
 
 .chatbot-toggler span {
   position: absolute;
 }
 
-.show-chatbot .chatbot-toggler i:first-child,
+.show-chatbot .chatbot-toggler img:first-child,
 .chatbot-toggler span :last-child {
   opacity: 0;
 }
@@ -56,7 +56,10 @@ body {
   position: fixed;
   right: 40px;
   bottom: 100px;
-  width: 420px;
+  width: 350px;
+  z-index: 1000;
+  min-height: 100px;
+  max-height: 400px;
   transform: scale(0.5);
   opacity: 0;
   pointer-events: none;
@@ -98,7 +101,7 @@ body {
 }
 
 .chatbot .chatbox {
-  height: 510px;
+  height:55vh;
   overflow-y: auto;
   padding: 30px 20px 70px;
 }
@@ -147,6 +150,7 @@ body {
   gap: 5px;
   background: #fff;
   padding: 5px 20px;
+  height: 70px;
   border-top: 1px solid #ccc;
 }
 

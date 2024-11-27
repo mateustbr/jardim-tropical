@@ -1,26 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const bar = document.getElementById('barra'); // Botão de abrir o menu
-    const fechar = document.getElementById('fechar'); // Botão de fechar o menu
-    const nav = document.getElementById('nav-barra'); // O menu móvel
+    const bar = document.getElementById('barra');
+    const fechar = document.getElementById('fechar');
+    const nav = document.getElementById('nav-barra');
 
-    // Abrir o menu
     if (bar) {
         bar.addEventListener('click', () => {
-            nav.classList.add('active'); // Adiciona a classe para exibir o menu
+            nav.classList.add('active');
         });
     }
 
-    // Fechar o menu
     if (fechar) {
         fechar.addEventListener('click', () => {
-            nav.classList.remove('active'); // Remove a classe para esconder o menu
+            nav.classList.remove('active');
         });
     }
 
-    // Fechar o menu ao clicar fora dele
     document.addEventListener('click', function (event) {
         if (!nav.contains(event.target) && !bar.contains(event.target)) {
-            nav.classList.remove('active'); // Fecha o menu
+            nav.classList.remove('active');
         }
     });
 });
@@ -29,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('searchInput');
     const suggestionsList = document.getElementById('suggestions-list');
 
-    // Dados das sugestões com links
     const suggestions = [
         { name: 'Orquídea Phalaenopsis', imgSrc: 'images/pagina_flores/Orquídea Phalaenopsis.jpg', link: 'sproduct.html' },
         { name: 'Flor do Campo', imgSrc: 'images/pagina_flores/Flor do Campo.jpg', link: '2_sproduct.html' },
@@ -49,15 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
         { name: 'Helicônia', imgSrc: 'images/pagina_flores/Helicônia.jpg', link: '16_product.html' }
     ];
 
-
-    // Remove acentos e normaliza texto
     function removeAccents(str) {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     }
 
-    // Mostra as sugestões com links e imagens
     function showSuggestions(query) {
-        suggestionsList.innerHTML = ''; // Limpa as sugestões anteriores
+        suggestionsList.innerHTML = '';
 
         if (query) {
             const filteredSuggestions = suggestions.filter(item =>
@@ -68,32 +61,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 const li = document.createElement('li');
                 li.classList.add('suggestion-item');
 
-                // Adiciona a imagem, texto e funcionalidade de redirecionamento
                 li.innerHTML = `
                     <img src="${item.imgSrc}" alt="${item.name}">
                     <span>${item.name}</span>
                 `;
                 li.onclick = function () {
-                    window.location.href = item.link; // Redireciona para o link do produto
+                    window.location.href = item.link;
                 };
 
                 suggestionsList.appendChild(li);
             });
 
-            // Exibe a lista se houver sugestões
             suggestionsList.style.display = filteredSuggestions.length > 0 ? 'block' : 'none';
         } else {
-            suggestionsList.style.display = 'none'; // Esconde se a busca estiver vazia
+            suggestionsList.style.display = 'none';
         }
     }
 
-    // Atualiza as sugestões quando o usuário digitar
     searchInput.addEventListener('input', function () {
         const query = searchInput.value.trim();
         showSuggestions(query);
     });
 
-    // Esconde a lista ao clicar fora
     document.addEventListener('click', function (event) {
         if (!event.target.closest('.search')) {
             suggestionsList.style.display = 'none';
@@ -120,76 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-const chatToggle = document.getElementById('chatToggle');
-const chatContainer = document.getElementById('chatContainer');
-const closeChat = document.getElementById('closeChat');
-const sendButton = document.getElementById('sendButton');
-const userInput = document.getElementById('userInput');
-const chatMessages = document.getElementById('chatMessages');
-
-// Abrir/fechar o chat
-chatToggle.addEventListener('click', () => {
-    chatContainer.classList.toggle('hidden');
-});
-
-closeChat.addEventListener('click', () => {
-    chatContainer.classList.add('hidden');
-});
-
-// Enviar mensagem
-sendButton.addEventListener('click', sendMessage);
-userInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') sendMessage();
-});
-
-function sendMessage() {
-    const message = userInput.value.trim();
-    if (message === '') return;
-
-    addMessage('user', message);
-    userInput.value = '';
-
-    setTimeout(() => {
-        const botReply = getBotResponse(message);
-        addMessage('bot', botReply);
-    }, 500);
-}
-
-function addMessage(sender, text) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('chat-message', sender);
-    messageDiv.textContent = text;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function getBotResponse(message) {
-    const lowercaseMessage = message.toLowerCase();
-
-    if (lowercaseMessage.includes('oi') || lowercaseMessage.includes('olá')) {
-        return 'Olá! Como posso ajudar você?';
-    } else if (lowercaseMessage.includes('tchau')) {
-        return 'Tchau! Até a próxima.';
-    } else if (lowercaseMessage.includes('como você está')) {
-        return 'Estou bem, obrigado por perguntar! E você?';
-    } else {
-        return 'Desculpe, não entendi. Pode reformular?';
-    }
-}
-
-    fetch('chatbot.html')
-        .then(response => response.text())
-        .then(data => {
-        document.getElementById('chatbot-container').innerHTML = data;
-        })
-        .catch(error => console.error('Erro ao carregar o chatbot:', error));
-
-
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 const chatbox = document.querySelector(".chatbox");
-const chatbotTogller = document.querySelector(".chatbot-toggler");
-const chatbotCloseBtn = document.querySelector(".close-btn");
+const chatToggler = document.querySelector(".chatbot-toggler");
 
 let userMessage;
 const inputInitHeight = chatInput.scrollHeight;
@@ -197,26 +120,77 @@ const inputInitHeight = chatInput.scrollHeight;
 const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);
-    let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>`;
+    const chatContent = className === "outgoing"
+        ? `<p>${message}</p>`
+        : `<img src="images/passaro.png" class="bird" alt="Passaro"><p>${message}</p>`;
     chatLi.innerHTML = chatContent;
     return chatLi;
 }
 
-const generateResponse = () => {
+function getBotResponse(userMessage) {
+    const lowercaseMessage = userMessage.toLowerCase();
 
+    if (lowercaseMessage.includes('oi') || lowercaseMessage.includes('olá')) {
+        return 'Olá! Como posso ajudar você?';
+    } else if (lowercaseMessage.includes('tchau')) {
+        return 'Tchau! Até a próxima.';
+    } else if (lowercaseMessage.includes('como você está')) {
+        return 'Estou bem, obrigado por perguntar! E você?';
+    } else if (lowercaseMessage.includes('orquídea phalaenopsis')) {
+        return 'A Orquídea Phalaenopsis é conhecida por suas flores elegantes e duradouras, sendo perfeita para decoração de interiores.';
+    } else if (lowercaseMessage.includes('flor do campo')) {
+        return 'As Flores do Campo são um mix de flores coloridas e vibrantes, ideais para quem busca um visual natural e alegre.';
+    } else if (lowercaseMessage.includes('lírios')) {
+        return 'Os Lírios simbolizam pureza e sofisticação, sendo muito usados em arranjos florais para ocasiões especiais.';
+    } else if (lowercaseMessage.includes('girassol')) {
+        return 'Os Girassóis representam felicidade e energia positiva, além de serem um símbolo de lealdade.';
+    } else if (lowercaseMessage.includes('suculentas')) {
+        return 'As Suculentas são plantas resistentes e de baixa manutenção, ideais para decoração e presentes.';
+    } else if (lowercaseMessage.includes('astromélias')) {
+        return 'As Astromélias simbolizam amizade e dedicação, com suas cores vibrantes e pétalas delicadas.';
+    } else if (lowercaseMessage.includes('gérberas')) {
+        return 'As Gérberas são conhecidas por suas cores vibrantes e simbolizam alegria e simplicidade.';
+    } else if (lowercaseMessage.includes('rosas')) {
+        return 'As Rosas são clássicas e atemporais, simbolizando amor, paixão e beleza.';
+    } else if (lowercaseMessage.includes('tulipas')) {
+        return 'As Tulipas são elegantes e versáteis, representando amor perfeito e prosperidade.';
+    } else if (lowercaseMessage.includes('gazânia')) {
+        return 'As Gazânias são flores resistentes que florescem ao sol, ideais para jardins e áreas externas.';
+    } else if (lowercaseMessage.includes('dália')) {
+        return 'As Dálias são flores sofisticadas e volumosas, simbolizando força e criatividade.';
+    } else if (lowercaseMessage.includes('bromélia')) {
+        return 'As Bromélias são exóticas e resistentes, perfeitas para decoração de ambientes internos e externos.';
+    } else if (lowercaseMessage.includes('camélia')) {
+        return 'As Camélias representam beleza e perfeição, com suas pétalas delicadas e elegantes.';
+    } else if (lowercaseMessage.includes('amaranthus')) {
+        return 'O Amaranthus é uma planta ornamental única, usada em arranjos sofisticados para um toque exótico.';
+    } else if (lowercaseMessage.includes('hibisco')) {
+        return 'O Hibisco é uma flor tropical vibrante, simbolizando delicadeza e calor.';
+    } else if (lowercaseMessage.includes('helicônia')) {
+        return 'A Helicônia é uma flor exótica e chamativa, ideal para compor arranjos tropicais e modernos.';
+    } else {
+        return 'Desculpe, não entendi. Pode reformular?';
+    }
 }
+
 
 const handleChat = () => {
     userMessage = chatInput.value.trim();
     if (!userMessage) return;
-
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+    chatInput.value = "";
+    chatInput.style.height = `${inputInitHeight}px`;
 
     setTimeout(() => {
-        chatbox.appendChild(createChatLi("Pensando...", "incoming"));
-        generateResponse();
-    }, 600);
+        const thinkingMessage = createChatLi("Pensando...", "incoming");
+        chatbox.appendChild(thinkingMessage);
 
+        setTimeout(() => {
+            thinkingMessage.remove();
+            const botResponse = getBotResponse(userMessage);
+            chatbox.appendChild(createChatLi(botResponse, "incoming"));
+        }, 1000);
+    }, 600);
 }
 
 chatInput.addEventListener("input", () => {
@@ -224,6 +198,15 @@ chatInput.addEventListener("input", () => {
     chatInput.style.height = `${chatInput.scrollHeight}px`;
 });
 
+chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && window.innerWidth > 800) {
+        e.preventDefault();
+        handleChat();
+    }
+});
+
+chatToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 sendChatBtn.addEventListener("click", handleChat);
-chatbotCloseBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
-chatbotTogller.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+chatInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") handleChat();
+});

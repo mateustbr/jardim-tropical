@@ -109,13 +109,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 const chatbox = document.querySelector(".chatbox");
 const chatToggler = document.querySelector(".chatbot-toggler");
+const chatbotCloseBtn = document.querySelector(".close-btnn");
 
 let userMessage;
 const inputInitHeight = chatInput.scrollHeight;
+
+const scrollToBottom = () => {
+    chatbox.scrollTop = chatbox.scrollHeight;
+};
 
 const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
@@ -184,11 +190,13 @@ const handleChat = () => {
     setTimeout(() => {
         const thinkingMessage = createChatLi("Pensando...", "incoming");
         chatbox.appendChild(thinkingMessage);
+        scrollToBottom();
 
         setTimeout(() => {
             thinkingMessage.remove();
             const botResponse = getBotResponse(userMessage);
             chatbox.appendChild(createChatLi(botResponse, "incoming"));
+            scrollToBottom();
         }, 1000);
     }, 600);
 }
@@ -205,8 +213,9 @@ chatInput.addEventListener("keydown", (e) => {
     }
 });
 
-chatToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 sendChatBtn.addEventListener("click", handleChat);
+chatToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+chatbotCloseBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
 chatInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") handleChat();
 });

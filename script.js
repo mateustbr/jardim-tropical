@@ -1,3 +1,11 @@
+const removeProductButtons = document.getElementsByClassName("bi bi-circle")
+for (var i = 0; i < removeProductButtons.length; i++) {
+    removeProductButtons[i].addEventListener("click", function(event) {
+       event.target.parentElement.parentElement.parentElement.remove()
+       alert("Removendo o Item do carrinho")
+    })
+}
+
 const bar = document.getElementById('barra');
 const close = document.getElementById('fechar');
 const nav = document.getElementById('nav-barra');

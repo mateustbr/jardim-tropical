@@ -1,0 +1,45 @@
+#topo-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 20px;
+    position:static;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+#nav-barra {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#nav-barra li {
+    margin-right: 20px;
+}
+
+#darkModeButton {
+    margin-left: 20px;
+}
+
+#darkModeToggle {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #000;
+}
+

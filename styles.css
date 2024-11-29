@@ -1,0 +1,111 @@
+body {
+    background-image: url(Login_Banner.png);
+    background-repeat: repeat;
+    background-size: 80%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: flex-end;
+    align-items:safe;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background: white;
+    padding: 55px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h2 {
+    text-align:center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 50%;
+    padding: 10px;
+    background-color: #4c2c2c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d79f98;
+}
+
+.forgot-password {
+    display:flexbox;
+    text-align: center;
+    justify-content:flex-end;
+    height: 50px;
+    color: #4c2c2c;
+    text-decoration: underline;
+    font-size: 13px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+social-login {
+    margin-top: 20px;
+    text-align:right;
+}
+
+.social-login p {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.social-button {
+    display: center;
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+.google {
+    background-color: #db4437;
+    
+}
+
+.facebook {
+    background-color: #4267B2;
+}
+
+.instagram {
+    background-color: #C13584;
+}
+
+.social-button i {
+    margin-right: 5px;
+}
+
+.social-button:hover {
+    opacity: 0.8;
+
+}
+

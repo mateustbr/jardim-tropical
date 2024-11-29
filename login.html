@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login Usuário</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="return redirecionarLogin();">
+            <div class="input-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        <a href="#" class="forgot-password">Esqueci minha senha</a>
+
+        <div class="social-login">
+            <p>ou faça login com:</p>
+            <a href="#" class="social-button google"><i class="bi bi-google"></i> Google</a>
+            <a href="#" class="social-button facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="#" class="social-button instagram"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+    </div>
+
+    <script>
+        function redirecionarLogin() {
+            const validUsername = "usuario";
+            const validPassword = "123";
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === validUsername && password === validPassword) {
+                alert("Login bem-sucedido!");
+                window.location.href = "inicio.html";
+            } else {
+                alert("Usuário ou senha inválidos! Tente novamente.");
+            }
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>
